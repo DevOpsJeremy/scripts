@@ -10,7 +10,7 @@ if [ $(command -v sudo 2>/dev/null) ]; then
 	SUDO="sudo "
 fi
 
-GIT_PKG="git"
+GIT_PKG=${GIT_PKG:-git}
 if command -v apt-get >/dev/null 2>&1; then
 	pkg_update() {
 		${SUDO}apt update $@
