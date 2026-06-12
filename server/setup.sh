@@ -2,15 +2,16 @@
 
 REPO_URL=${REPO_URL:-${1:-https://github.com/DevOpsJeremy/server}}
 REPO_PATH=${REPO_PATH:-${2:-~/.server}}
-ENABLE_CRED_HELPER=${ENABLE_CRED_HELPER:-${3:-true}}
-CREDENTIAL_HELPER=${CREDENTIAL_HELPER:-${4:-store}}
+ENABLE_SUDO=${ENABLE_SUDO:-${3:-true}}
+GIT_PKG=${GIT_PKG:-${4:-git}}
+ENABLE_CRED_HELPER=${ENABLE_CRED_HELPER:-${5:-true}}
+CREDENTIAL_HELPER=${CREDENTIAL_HELPER:-${6:-store}}
 
-SUDO=" "
-if [ $(command -v sudo 2>/dev/null) ]; then
+SUDO=""
+if [ "$ENABLE_SUDO" == "true" ] && [ $(command -v sudo 2>/dev/null) ]; then
 	SUDO="sudo "
 fi
 
-GIT_PKG=${GIT_PKG:-git}
 if command -v apt-get >/dev/null 2>&1; then
 	pkg_update() {
 		${SUDO}apt update $@
