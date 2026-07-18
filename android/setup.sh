@@ -2,6 +2,21 @@
 
 set -euox
 
+download() {
+  SOURCE="$1"
+  if [ -z "$SOURCE" ]; then
+    echo "ERROR: No source provided"
+    exit 1
+  fi
+  CURL_ARGS="'$SOURCE'"
+  shift
+
+  DEST="$1"
+  if [ ! -z "$DEST" ]; then
+    CURL_ARGS="$CURL_ARGS -o '$DEST'"
+  fi
+}
+
 . /etc/os-release
 
 if dpkg-query -W -f='${Status}' gh 2>/dev/null | grep -q "^install ok installed$"; then
