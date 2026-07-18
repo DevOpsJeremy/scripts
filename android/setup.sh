@@ -14,7 +14,17 @@ download() {
   DEST="$1"
   if [ ! -z "$DEST" ]; then
     CURL_ARGS="$CURL_ARGS -o '$DEST'"
+    shift
   fi
+
+  EXTRA_ARGS="$@"
+  if [ -z "$EXTRA_ARGS" ]; then
+    EXTRA_ARGS="-sSk"
+  fi
+  CURL_ARGS="$CURL_ARGS $EXTRA_ARGS"
+
+  echo curl $CURL_ARGS
+  curl $CURL_ARGS
 }
 
 . /etc/os-release
