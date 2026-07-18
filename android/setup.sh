@@ -26,6 +26,30 @@ download() {
   echo curl $CURL_ARGS
   curl $CURL_ARGS
 }
+gh-get() {
+  DOWNLOAD_ARGS=""
+
+  SOURCE="$1"
+  if [ -z "$SOURCE" ]; then
+    echo "ERROR: No source provided"
+    exit 1
+  fi
+  shift
+
+  DEST="$1"
+  if [ ! -z "$DEST" ]; then
+    DOWNLOAD_ARGS="$DOWNLOAD_ARGS '$DEST'"
+    shift
+  fi
+
+  BRAMCH="$1"
+  if [ -z "$BRANCH" ]; then
+    BRANCH="main"
+  fi
+
+  echo curl $CURL_ARGS
+  curl $CURL_ARGS
+}
 
 . /etc/os-release
 
