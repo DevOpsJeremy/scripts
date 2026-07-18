@@ -3,7 +3,7 @@
 set -euox
 
 . /etc/os-release
-curl -k https://packages.microsoft.com/config/debian/$VERSION_ID/packages-microsoft-prod.deb -o m.deb
+curl -sSk https://packages.microsoft.com/config/debian/$VERSION_ID/packages-microsoft-prod.deb -o m.deb
 sudo dpkg -i m.deb
 rm m.deb
 
