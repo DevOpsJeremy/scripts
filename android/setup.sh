@@ -63,7 +63,7 @@ gh-get() {
 
 if dpkg-query -W -f='${Status}' gh 2>/dev/null | grep -q "^install ok installed$"; then
   sudo mkdir -p -m 755 /etc/apt/keyrings && \
-  out=$(mktemp) && curl -sSk -o $out https://cli.github.com/packages/githubcli-archive-keyring.gpg && \
+  out=$(mktemp) && download https://cli.github.com/packages/githubcli-archive-keyring.gpg $out && \
   cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
   sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg && \
   sudo mkdir -p -m 755 /etc/apt/sources.list.d && \
@@ -71,9 +71,10 @@ if dpkg-query -W -f='${Status}' gh 2>/dev/null | grep -q "^install ok installed$
 fi
 
 if dpkg-query -W -f='${Status}' powershell 2>/dev/null | grep -q "^install ok installed$"; then
-    curl -sSk https://packages.microsoft.com/config/debian/$VERSION_ID/packages-microsoft-prod.deb -o m.deb && \
-    sudo dpkg -i m.deb && \
-    rm m.deb
+    out=$(mktemp)
+    download https://packages.microsoft.com/config/debian/$VERSION_ID/packages-microsoft-prod.deb $out && \
+    sudo dpkg -i m.$out && \
+    rm $out
 fi
 
 sudo apt update && \
