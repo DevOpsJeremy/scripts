@@ -42,13 +42,21 @@ gh-get() {
     shift
   fi
 
-  BRAMCH="$1"
+  BRANCH="$1"
   if [ -z "$BRANCH" ]; then
     BRANCH="main"
   fi
 
-  echo curl $CURL_ARGS
-  curl $CURL_ARGS
+  REPO="$1"
+  if [ -z "$REPO" ]; then
+    BRANCH="scripts"
+  fi
+
+  URL="https://raw.githubusercontent.com/DevOpsJeremy/$REPO/refs/heads/$BRANCH/$SOURCE"
+  DOWNLOAD_ARGS="$URL $DOWNLOAD_ARGS"
+
+  echo download $DOWNLOAD_ARGS
+  download $DOWNLOAD_ARGS
 }
 
 . /etc/os-release
