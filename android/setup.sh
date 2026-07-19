@@ -26,7 +26,7 @@ download() {
   echo curl $CURL_ARGS
   curl $CURL_ARGS
 }
-gh-get() {
+gh_get() {
   DOWNLOAD_ARGS=""
 
   SOURCE="$1"
@@ -85,3 +85,4 @@ sudo apt update && \
   powershell \
   gh
 
+gh_get android/setup.sh
