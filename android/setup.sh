@@ -9,12 +9,12 @@ download() {
     exit 1
   fi
   CURL_ARGS="'$SOURCE'"
-  shift
+  shift || true
 
   DEST="$1" || DEST=""
   if [ ! -z "$DEST" ]; then
     CURL_ARGS="$CURL_ARGS -o '$DEST'"
-    shift
+    shift || true
   fi
 
   EXTRA_ARGS="$@" || EXTRA_ARGS=""
@@ -39,13 +39,14 @@ gh_get() {
   DEST="$1" || DEST=""
   if [ ! -z "$DEST" ]; then
     DOWNLOAD_ARGS="$DOWNLOAD_ARGS '$DEST'"
-    shift
+    shift || true
   fi
 
   BRANCH="$1" || BRANCH=""
   if [ -z "$BRANCH" ]; then
     BRANCH="main"
   fi
+  shift || true
 
   REPO="$1" || REPO=""
   if [ -z "$REPO" ]; then
