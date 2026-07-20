@@ -3,13 +3,15 @@
 set -euox
 
 download() {
+  set +e
+
   SOURCE="$1" || SOURCE=""
   if [ -z "$SOURCE" ]; then
     echo "ERROR: No source provided"
     exit 1
   fi
   CURL_ARGS="'$SOURCE'"
-  shift || true
+  shift || 
 
   DEST="$1" || DEST=""
   if [ ! -z "$DEST" ]; then
@@ -22,11 +24,14 @@ download() {
     EXTRA_ARGS="-sSk"
   fi
   CURL_ARGS="$CURL_ARGS $EXTRA_ARGS"
+  set -e
 
   echo curl $CURL_ARGS
   curl $CURL_ARGS
 }
 gh_get() {
+  set +e
+
   DOWNLOAD_ARGS=""
 
   SOURCE="$1" || SOURCE=""
@@ -55,6 +60,7 @@ gh_get() {
 
   URL="https://raw.githubusercontent.com/DevOpsJeremy/$REPO/refs/heads/$BRANCH/$SOURCE"
   DOWNLOAD_ARGS="$URL $DOWNLOAD_ARGS"
+  set -e
 
   echo download $DOWNLOAD_ARGS
   download $DOWNLOAD_ARGS
