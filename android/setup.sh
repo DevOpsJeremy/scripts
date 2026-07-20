@@ -5,15 +5,15 @@ set -euox
 download() {
   set +e
 
-  SOURCE="$1" || SOURCE=""
+  SOURCE="$1"
   if [ -z "$SOURCE" ]; then
     echo "ERROR: No source provided"
     exit 1
   fi
   CURL_ARGS="'$SOURCE'"
-  shift || 
+  shift
 
-  DEST="$1" || DEST=""
+  DEST="$1"
   if [ ! -z "$DEST" ]; then
     CURL_ARGS="$CURL_ARGS -o '$DEST'"
     shift || true
