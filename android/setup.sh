@@ -39,20 +39,20 @@ gh_get() {
   fi
   SOURCE="$1"
 
-  DEST="$1" || DEST=""
-  if [ ! -z "$DEST" ]; then
+  if [ ! -z "$2" ]; then
+    DEST="$2"
     DOWNLOAD_ARGS="$DOWNLOAD_ARGS '$DEST'"
-    shift || true
   fi
 
-  BRANCH="$1" || BRANCH=""
-  if [ -z "$BRANCH" ]; then
+  if [ ! -z "$3" ]; then
+    BRANCH="$3"
+  else
     BRANCH="main"
   fi
-  shift || true
 
-  REPO="$1" || REPO=""
-  if [ -z "$REPO" ]; then
+  if [ ! -z "$4" ]; then
+    BRANCH="$4"
+  else
     BRANCH="scripts"
   fi
 
