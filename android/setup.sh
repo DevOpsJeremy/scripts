@@ -110,3 +110,5 @@ fi
 for f in .bashrc .bash_aliases .bash_variables .bash_functions; do
   gh_get "android/$f" "~/$f"
 done
+
+chsh $(which pwsh)
