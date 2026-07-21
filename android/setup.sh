@@ -111,4 +111,12 @@ for f in .bashrc .bash_aliases .bash_variables .bash_functions; do
   gh_get "android/$f" "~/$f"
 done
 
-chsh $(which pwsh)
+PWSH=$(which pwsh)
+PWSH_PROFILE=$($PWSH -c '$PROFILE')
+PWSH_PROFILE_DIR=$(dirname $PWSH_PROFILE)
+PWSH_PROFILE_FILE=$(basename $PWSH_PROFILE)
+
+mkdir -p "$PWSH_PROFILE_DIR"
+gh_get "android/$PWSH_PROFILE_FILE" "$PWSH_PROFILE"
+
+chsh $PWSH
