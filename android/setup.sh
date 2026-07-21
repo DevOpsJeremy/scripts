@@ -55,12 +55,18 @@ gh_get() {
     shift
   fi
 
-  BRANCH="$1"
-  if [ -z "$BRANCH" ]; then
-    BRANCH="scripts"
+  REPO="$1"
+  if [ -z "$REPO" ]; then
+    REPO="scripts"
+    shift
   fi
 
-  URL="https://raw.githubusercontent.com/DevOpsJeremy/$REPO/refs/heads/$BRANCH/$SOURCE"
+  OWNER="$1"
+  if [ -z "$OWNER" ]; then
+    OWNER="DevOpsJeremy"
+    shift
+  fi
+  URL="https://raw.githubusercontent.com/$OWNER/$REPO/refs/heads/$BRANCH/$SOURCE"
   DOWNLOAD_ARGS="$URL $DOWNLOAD_ARGS"
   set -e
 
