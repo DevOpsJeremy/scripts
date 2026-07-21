@@ -107,7 +107,7 @@ if [ ! -d "$VENV_PATH" ]; then
 fi
 
 
-for f in .bashrc .bash_aliases .bash_variables .bash_functions; do
+for f in .bashrc .bash_aliases .bash_variables .bash_functions .gitconfig; do
   gh_get "android/$f" "~/$f"
 done
 
@@ -124,3 +124,5 @@ gh_get "android/$PWSH_PROFILE_FILE" "$PWSH_PROFILE"
 for dir in ~/repos; do
   mkdir -p $dir
 done
+
+gh auth login -h GitHub.com -p https
