@@ -125,4 +125,6 @@ for dir in ~/repos; do
   mkdir -p $dir
 done
 
-gh auth login -h GitHub.com -p https
+if [ ! -f "~/.config/gh/config.yml" ]; then
+  gh auth login -h GitHub.com -p https
+fi
