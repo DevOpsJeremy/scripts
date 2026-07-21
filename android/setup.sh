@@ -16,7 +16,7 @@ download() {
   DEST="$1"
   if [ ! -z "$DEST" ]; then
     CURL_ARGS="$CURL_ARGS -o '$DEST'"
-    shift
+    [ $# -gt 0 ] && shift
   fi
 
   EXTRA_ARGS="$@"
@@ -45,26 +45,26 @@ gh_get() {
   DEST="$1"
   if [ ! -z "$DEST" ]; then
     DOWNLOAD_ARGS="$DOWNLOAD_ARGS '$DEST'"
-    shift
+    [ $# -gt 0 ] && shift
   fi
 
   BRANCH="$1"
   if [ -z "$BRANCH" ]; then
     BRANCH="main"
   else
-    shift
+    [ $# -gt 0 ] && shift
   fi
 
   REPO="$1"
   if [ -z "$REPO" ]; then
     REPO="scripts"
-    shift
+    [ $# -gt 0 ] && shift
   fi
 
   OWNER="$1"
   if [ -z "$OWNER" ]; then
     OWNER="DevOpsJeremy"
-    shift
+    [ $# -gt 0 ] && shift
   fi
 
   URL="https://raw.githubusercontent.com/$OWNER/$REPO/refs/heads/$BRANCH/$SOURCE"
