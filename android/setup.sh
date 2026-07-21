@@ -10,12 +10,12 @@ download() {
     echo "ERROR: No source provided"
     exit 1
   fi
-  CURL_ARGS="'$SOURCE'"
+  CURL_ARGS="$SOURCE"
   shift
 
   DEST="$1"
   if [ ! -z "$DEST" ]; then
-    CURL_ARGS="$CURL_ARGS -o '$DEST'"
+    CURL_ARGS="$CURL_ARGS -o $DEST"
     [ $# -gt 0 ] && shift
   fi
 
@@ -44,7 +44,7 @@ gh_get() {
 
   DEST="$1"
   if [ ! -z "$DEST" ]; then
-    DOWNLOAD_ARGS="$DOWNLOAD_ARGS '$DEST'"
+    DOWNLOAD_ARGS="$DOWNLOAD_ARGS $DEST"
     [ $# -gt 0 ] && shift
   fi
 
