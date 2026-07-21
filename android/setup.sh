@@ -120,3 +120,7 @@ mkdir -p "$PWSH_PROFILE_DIR"
 gh_get "android/$PWSH_PROFILE_FILE" "$PWSH_PROFILE"
 
 # chsh -s $PWSH $USER
+
+for dir in ~/repos; do
+  mkdir -p $dir
+done
