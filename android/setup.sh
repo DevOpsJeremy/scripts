@@ -1,6 +1,6 @@
 #!/use/bin/env sh
 
-set -euox
+set -eox
 
 download() {
   set +e
