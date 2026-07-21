@@ -1,25 +1,26 @@
 #!/use/bin/env sh
 
-set -euox
+set -eox
 
 download() {
   set +e
 
-  if [ ! -z "$1" ]; then
+  SOURCE="$1"
+  if [ -z "$SOURCE" ]; then
     echo "ERROR: No source provided"
     exit 1
   fi
-  SOURCE="$1"
   CURL_ARGS="'$SOURCE'"
+  shift
 
-  if [ ! -z "$2" ]; then
-    DEST="$2"
+  DEST="$1"
+  if [ ! -z "$DEST" ]; then
     CURL_ARGS="$CURL_ARGS -o '$DEST'"
+    shift
   fi
 
-  if [ ! -z "$3" ]; then
-    EXTRA_ARGS="$3"
-  else
+  EXTRA_ARGS="$@"
+  if [ -z "$EXTRA_ARGS" ]; then
     EXTRA_ARGS="-sSk"
   fi
   CURL_ARGS="$CURL_ARGS $EXTRA_ARGS"
@@ -33,26 +34,29 @@ gh_get() {
 
   DOWNLOAD_ARGS=""
 
-  if [ -z "$1" ]; then
+  SOURCE="$1"
+  if [ -z "$SOURCE" ]; then
     echo "ERROR: No source provided"
     exit 1
   fi
   SOURCE="$1"
+  shift
 
-  if [ ! -z "$2" ]; then
-    DEST="$2"
+  DEST="$1"
+  if [ ! -z "$DEST" ]; then
     DOWNLOAD_ARGS="$DOWNLOAD_ARGS '$DEST'"
+    shift
   fi
 
-  if [ ! -z "$3" ]; then
-    BRANCH="$3"
-  else
+  BRANCH="$1"
+  if [ -z "$BRANCH" ]; then
     BRANCH="main"
+  else
+    shift
   fi
 
-  if [ ! -z "$4" ]; then
-    BRANCH="$4"
-  else
+  BRANCH="$1"
+  if [ -z "$BRANCH" ]; then
     BRANCH="scripts"
   fi
 
