@@ -119,4 +119,4 @@ PWSH_PROFILE_FILE=$(basename $PWSH_PROFILE)
 mkdir -p "$PWSH_PROFILE_DIR"
 gh_get "android/$PWSH_PROFILE_FILE" "$PWSH_PROFILE"
 
-chsh $PWSH
+# chsh -s $PWSH $USER
