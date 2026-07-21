@@ -18,7 +18,7 @@ download() {
   fi
 
   if [ ! -z "$3" ]; then
-    EXTRA_ARGS="$@"
+    EXTRA_ARGS="$3"
   else
     EXTRA_ARGS="-sSk"
   fi
@@ -33,12 +33,11 @@ gh_get() {
 
   DOWNLOAD_ARGS=""
 
-  SOURCE="$1" || SOURCE=""
-  if [ -z "$SOURCE" ]; then
+  if [ -z "$1" ]; then
     echo "ERROR: No source provided"
     exit 1
   fi
-  shift
+  SOURCE="$1"
 
   DEST="$1" || DEST=""
   if [ ! -z "$DEST" ]; then
