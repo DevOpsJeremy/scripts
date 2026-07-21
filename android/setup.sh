@@ -101,4 +101,9 @@ sudo apt update && \
   powershell \
   gh
 
-gh_get android/setup.sh
+VENV_PATH="~/venv"
+if [ ! -d "$VENV_PATH" ]; then
+  python3 -m venv $VENV_PATH
+fi
+
+
