@@ -15,11 +15,11 @@ download() {
   if [ ! -z "$2" ]; then
     DEST="$2"
     CURL_ARGS="$CURL_ARGS -o '$DEST'"
-    shift || true
   fi
 
-  EXTRA_ARGS="$@" || EXTRA_ARGS=""
-  if [ -z "$EXTRA_ARGS" ]; then
+  if [ ! -z "$3" ]; then
+    EXTRA_ARGS="$@"
+  else
     EXTRA_ARGS="-sSk"
   fi
   CURL_ARGS="$CURL_ARGS $EXTRA_ARGS"
