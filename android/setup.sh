@@ -99,7 +99,8 @@ sudo apt update && \
   python3 \
   python3-venv \
   powershell \
-  gh
+  gh \
+  neovim
 
 VENV_PATH="~/venv"
 if [ ! -d "$VENV_PATH" ]; then
