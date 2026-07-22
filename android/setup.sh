@@ -26,7 +26,6 @@ download() {
   CURL_ARGS="$CURL_ARGS $EXTRA_ARGS"
   set -e
 
-  echo curl $CURL_ARGS
   curl $CURL_ARGS
 }
 gh_get() {
@@ -71,7 +70,6 @@ gh_get() {
   DOWNLOAD_ARGS="$URL $DOWNLOAD_ARGS"
   set -e
 
-  echo download $DOWNLOAD_ARGS
   download $DOWNLOAD_ARGS
 }
 
@@ -122,7 +120,8 @@ gh_get "android/$PWSH_PROFILE_FILE" "$PWSH_PROFILE"
 
 sudo chsh -s $PWSH $USER
 
-for dir in ~/repos; do
+DIRS="~/repos"
+for dir in $DIRS; do
   mkdir -p $dir
 done
 
@@ -130,4 +129,3 @@ if [ ! -f ~/.config/gh/config.yml ]; then
   gh auth login -h GitHub.com -p https
 fi
 
-$PWSH
